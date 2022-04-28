@@ -5,19 +5,13 @@ try {
     echo "Impossible de se connecter!";
     die();
 }
-
-$cities = obtainCities($db);
-$eventTypes = obtainEventTypes($db);
-$event = obtainOneEvent($db, $_GET["id"]);
-
-debug($event);
 ?>
 
 <!doctype html>
 <html class="no-js" lang="">
 
 <?php
-define("PAGETITLE", "Connection");
+define("PAGETITLE", "Se connecter");
 define("PAGEALIAS", "signin");
 ?>
 
@@ -29,11 +23,11 @@ define("PAGEALIAS", "signin");
 
     <main class="container">
         <!-- Add your site or application content here -->
-        <p>Modifier un événement.</p>
+        <p class="fs-2 signup-title"><?php echo PAGETITLE; ?></p>
 
         <?php
         if(isset($_GET["success"]) && $_GET["success"] == "true"){
-            echo "<p> Évenement modifié avec succès </p>";
+           redirect("signin.php?accountcreated=true");
         } 
         elseif(isset($_GET["success"]) && $_GET["success"] == "false"){
             echo "<p> Une erreur est survenue! </p>";
@@ -42,34 +36,18 @@ define("PAGEALIAS", "signin");
 
         <form id="rendered-form" method="post" action="/actions/create_event.php">
             <div class="rendered-form">
-                <div class="formbuilder-text form-group field-name"><label for="name" class="formbuilder-text-label">Nom<span class="formbuilder-required">*</span></label><input type="text" class="form-control" name="name" access="false" id="name" required="required" aria-required="true" value='<?php echo $event['name']; ?>'></div>
-                <div class="formbuilder-textarea form-group field-description"><label for="description" class="formbuilder-textarea-label">Description<br><span class="formbuilder-required">*</span></label><textarea type="textarea" class="form-control" name="description" access="false" id="description" required="required" aria-required="true" value='<?php echo $event['description']; ?>'></textarea>
+                <div class="formbuilder-text form-group field-email row">
+                    <div class="col-3"><label for="email" class="formbuilder-text-label">Email : </label></div>
+                    <div class="col-9"><input type="email" class="form-control" name="email" access="false" id="email" required="required" aria-required="true"></div>
                 </div>
-                <div class="formbuilder-date form-group field-date"><label for="date" class="formbuilder-date-label">Date<span class="formbuilder-required">*</span></label><input type="date" class="form-control" name="date" access="false" id="date" required="required" aria-required="true" value='<?php echo $event['date']; ?>'></div>
-                <div class="formbuilder-number form-group field-cost"><label for="cost" class="formbuilder-number-label">Prix<span class="formbuilder-required">*</span></label><input type="number" class="form-control" name="cost" access="false" id="cost" required="required" aria-required="true" value='<?php echo $event['cost']; ?>'></div>
-                <div class="formbuilder-text form-group field-website"><label for="website" class="formbuilder-text-label">Site
-                        web<br><span class="formbuilder-required">*</span></label><input type="text" class="form-control" name="website" access="false" id="website" required="required" aria-required="true" value='<?php echo $event['website']; ?>'></div>
-                <div class="formbuilder-number form-group field-id_event_types"><label for="id_event_types" class="formbuilder-number-label">Type d'événement<span class="formbuilder-required">*</span></label>
-                    <select name="id_event_types" id="id_event_types">
-                        <?php
-                        //Boucle qui affiche les données
-                        foreach ($eventTypes as $eventType) {
-                            echo '<option value="' . $eventType['id'] . '">' . $eventType['name'] . '</option>';
-                        }
-                        ?>
-                    </select>
+                <div class="formbuilder-text form-group field-password row">
+                    <div class="col-3"><label for="password" class="formbuilder-text-label">Mot de passe : </label></div>
+                    <div class="col-9"><input type="password" class="form-control" name="password" access="false" id="password" required="true" aria-required="true"></div>
                 </div>
-                <div class="formbuilder-number form-group field-id_cities"><label for="id_cities" class="formbuilder-number-label">Ville<span class="formbuilder-required">*</span></label>
-                    <select name="id_cities" id="id_cities">
-                        <?php
-                        //Boucle qui affiche les données
-                        foreach ($cities as $city) {
-                            echo '<option value="' . $city['id'] . '">' . $city['name'] . '</option>';
-                        }
-                        ?>
-                    </select>
+                <div class="formbuilder-button form-group field-submit row">
+                    <div class="col-10"></div>
+                    <div class="col-2 signup-submit"><button type="submit" class="btn-outline-primary btn" name="action" access="false" id="action" value="update_event">Créer le compte</button></div>
                 </div>
-                <div class="formbuilder-button form-group field-submit"><button type="submit" class="btn-primary btn" name="action" access="false" id="action" value="update_event">Envoyer</button></div>
             </div>
         </form>
     </main>

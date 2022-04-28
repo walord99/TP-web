@@ -13,7 +13,7 @@ $products = getAllProduct($db);
 <html class="no-js" lang="">
 
 <?php
-define("PAGETITLE", "Accueil");
+define("PAGETITLE", "Produits");
 define("PAGEALIAS", "accueil");
 ?>
 
@@ -28,11 +28,13 @@ define("PAGEALIAS", "accueil");
         <?php
         foreach ($products as $product) {
             echo "<div class='col-4'>
-                    <a class='' href='product?sku=" . $product["sku"] . "'>
-                        <img class='img-fluid' src='../img/".$product["sku"].".png' alt='".$product["description"]."'>
-                        <p class='fs-5'>".$product["name"]."</p>
-                        <p class='fs-6'>".$product["price"]."$</p>
-                    </a>
+                    <div class='product-div'>
+                        <a class='product-link' href='product?sku=" . $product["sku"] . "'>
+                            <img class='img-fluid product-img' src='../img/".$product["sku"].".png' alt='".$product["description"]."'>
+                            <p class='fs-5'>".$product["name"]."</p>
+                            <p class='fs-6'>".$product["price"]."$</p>
+                        </a>
+                    </div>    
                   </div>";
         }
         ?>

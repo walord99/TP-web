@@ -86,7 +86,45 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-
+header{
+  padding-bottom: 30px;
+}
+footer{
+  padding-top: 20px;
+}
+footer > p{
+  text-align: center;
+}
+.form-group{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.signup-title{
+  margin-bottom: 40px;
+}
+.signup-subtitle{
+  margin-bottom: 25px;
+}
+.signup-submit > button{
+  float: right;
+}
+.product-div{
+  padding: 5px;
+  border: 3px solid rgba(112, 110, 110, 0.5);
+  border-radius: 8px;
+  text-align: center;
+}
+.product-div :hover{
+  text-decoration: none;
+  color: rgb(112, 110, 110);
+}
+.product-link{
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+.product-img{
+  height: 300px;
+}
 /* ==========================================================================
    Helper classes
    ========================================================================== */
