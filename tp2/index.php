@@ -13,7 +13,7 @@
       if (file_exists($filename)) {
           require DOCROOT."/pages/".$_GET["page"].".php";
       } else {
-          redirect("404.html");
+          header("Location: 404.html");
       }
   }else{
       require DOCROOT."/pages/accueil.php";

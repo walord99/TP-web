@@ -15,23 +15,23 @@
           <a class="nav-link <?php if(PAGEALIAS == "accueil"){ echo "active";} ?>" aria-current="page" href="/">Produits</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?php if(PAGEALIAS == "cart"){ echo "active";} ?>" href="/?page=cart">Panier</a>
+          <a class="nav-link <?php if(PAGEALIAS == "cart"){ echo "active";} ?>" href="/cart">Panier</a>
         </li>
         <?php
         $isConnected = false;
         if (!$isConnected) :
         ?>
           <li class="nav-item">
-            <a class="nav-link <?php if(PAGEALIAS == "signup"){ echo "active";} ?>" href="/?page=signup">Créer un compte</a>
+            <a class="nav-link <?php if(PAGEALIAS == "signup"){ echo "active";} ?>" href="/signup">Créer un compte</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link <?php if(PAGEALIAS == "signin"){ echo "active";} ?>" href="/?page=signin">Se connecter</a>
+            <a class="nav-link <?php if(PAGEALIAS == "signin"){ echo "active";} ?>" href="/signin">Se connecter</a>
           </li>
         <?php
         else :
         ?>
           <li class="nav-item">
-            <a class="nav-link" href="/?page=signout">Se déconnecter</a>
+            <a class="nav-link" href="/signout">Se déconnecter</a>
           </li>
         <?php
         endif;

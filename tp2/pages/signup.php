@@ -5,6 +5,12 @@ try {
     echo "Impossible de se connecter!";
     die();
 }
+
+$cities = obtainCities($db);
+$eventTypes = obtainEventTypes($db);
+$event = obtainOneEvent($db, $_GET["id"]);
+
+debug($event);
 ?>
 
 <!doctype html>
@@ -33,7 +39,7 @@ define("PAGEALIAS", "signup");
             echo "<p> Une erreur est survenue! </p>";
         }
         ?>
-        <?/*
+
         <form id="rendered-form" method="post" action="/actions/create_event.php">
             <div class="rendered-form">
                 <div class="formbuilder-text form-group field-name"><label for="name" class="formbuilder-text-label">Nom<span class="formbuilder-required">*</span></label><input type="text" class="form-control" name="name" access="false" id="name" required="required" aria-required="true" value='<?php echo $event['name']; ?>'></div>
@@ -66,8 +72,6 @@ define("PAGEALIAS", "signup");
                 <div class="formbuilder-button form-group field-submit"><button type="submit" class="btn-primary btn" name="action" access="false" id="action" value="update_event">Envoyer</button></div>
             </div>
         </form>
-        */?>
-        
     </main>
 
     <?php require DOCROOT . '/includes/footer.inc.php'; ?>

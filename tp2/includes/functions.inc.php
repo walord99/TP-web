@@ -14,7 +14,7 @@ function redirect(string $url = ""){
 
 //Section BD
 
-function connectDB()
+function connectDB($dname, $dbUsername, $dbPassword)
 {
   try {
     $db = new PDO('mysql:host=localhost;dbname=' . DBNAME . ';charset=utf8', DBUSERNAME, DBPASSWORD);
@@ -101,7 +101,7 @@ function getProductInfo($db, $sku){
   $qry = $db ->prepare($sql);
   $qry->execute($datas);
 
-  $product = $qry->fetch();
+  $product = $qry->fetchAll();
   return $product;
 }
 

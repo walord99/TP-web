@@ -24,14 +24,14 @@ define("PAGEALIAS", "accueil");
     <?php require DOCROOT . '/includes/header.inc.php'; ?>
 
     <main class="container">
-        <div class='row'>
+        <div class='row '>
         <?php
-        //Boucle qui affiche les données
         foreach ($products as $product) {
             echo "<div class='col-4'>
-                    <a href='product?sku=" . $product["sku"] . "'>
-                        <img src='../img/".$product["sku"].".png' alt='".$product["description"]."'>".$product["name"]."</br>
-                        ".$product["price"]."
+                    <a class='' href='product?sku=" . $product["sku"] . "'>
+                        <img class='img-fluid' src='../img/".$product["sku"].".png' alt='".$product["description"]."'>
+                        <p class='fs-5'>".$product["name"]."</p>
+                        <p class='fs-6'>".$product["price"]."$</p>
                     </a>
                   </div>";
         }
