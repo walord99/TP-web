@@ -14,7 +14,7 @@ function redirect(string $url = ""){
 
 //Section BD
 
-function connectDB($dname, $dbUsername, $dbPassword)
+function connectDB()
 {
   try {
     $db = new PDO('mysql:host=localhost;dbname=' . DBNAME . ';charset=utf8', DBUSERNAME, DBPASSWORD);
