@@ -46,7 +46,7 @@ define("PAGEALIAS", "signin");
                 </div>
                 <div class="formbuilder-button form-group field-submit row">
                     <div class="col-10"></div>
-                    <div class="col-2 signup-submit"><button type="submit" class="btn-outline-primary btn" name="action" access="false" id="action" value="update_event">Créer le compte</button></div>
+                    <div class="col-2 signup-submit"><button type="submit" class="btn-outline-primary btn" name="action" access="false" id="action" value="login_user">Se connecter</button></div>
                 </div>
             </div>
         </form>

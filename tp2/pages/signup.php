@@ -35,7 +35,7 @@ define("PAGEALIAS", "signup");
         }
         ?>
 
-        <form id="rendered-form" method="post" action="/actions/create_event.php">
+        <form id="rendered-form" method="post" action="/actions/create_user.php">
             <div class="rendered-form">
                 <p class="fs-4 signup-subtitle">Information sur le compte</p>
                 
@@ -54,21 +54,21 @@ define("PAGEALIAS", "signup");
 
                 <p class="fs-4 signup-subtitle">Information sur la livraison</p>
 
-                <div class="formbuilder-text form-group field-surname row">
-                    <div class="col-3"><label for="surname" class="formbuilder-text-label">Prénom : </label></div>
-                    <div class="col-9"><input type="text" class="form-control" name="surname" access="false" id="surname" required="required" aria-required="true"></div>
+                <div class="formbuilder-text form-group field-first_name row">
+                    <div class="col-3"><label for="first_name" class="formbuilder-text-label">Prénom : </label></div>
+                    <div class="col-9"><input type="text" class="form-control" name="first_name" access="false" id="first_name" required="required" aria-required="true"></div>
                 </div>
-                <div class="formbuilder-text form-group field-name row">
-                    <div class="col-3"><label for="name" class="formbuilder-text-label">Nom : </label></div>
-                    <div class="col-9"><input type="text" class="form-control" name="name" access="false" id="name" required="required" aria-required="true"></div>
+                <div class="formbuilder-text form-group field-last_name row">
+                    <div class="col-3"><label for="last_name" class="formbuilder-text-label">Nom : </label></div>
+                    <div class="col-9"><input type="text" class="form-control" name="last_name" access="false" id="last_name" required="required" aria-required="true"></div>
                 </div>
-                <div class="formbuilder-text form-group field-shippingadress row">
-                    <div class="col-3"><label for="shippingadress" class="formbuilder-text-label">Adresse de livraison : </label></div>
-                    <div class="col-9"><input type="text" class="form-control" name="shippingadress" access="false" id="shippingadress" required="required" aria-required="true"></div>
+                <div class="formbuilder-text form-group field-shipping_adress row">
+                    <div class="col-3"><label for="shipping_adress" class="formbuilder-text-label">Adresse de livraison : </label></div>
+                    <div class="col-9"><input type="text" class="form-control" name="shipping_adress" access="false" id="shipping_adress" required="required" aria-required="true"></div>
                 </div>
                 <div class="formbuilder-button form-group field-submit row">
                     <div class="col-10"></div>
-                    <div class="col-2 signup-submit"><button type="submit" class="btn-outline-primary btn" name="action" access="false" id="action" value="update_event">Créer le compte</button></div>
+                    <div class="col-2 signup-submit"><button type="submit" class="btn-outline-primary btn" name="action" access="false" id="action" value="create_user">Créer le compte</button></div>
                 </div>
             </div>
         </form>

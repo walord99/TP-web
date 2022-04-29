@@ -116,3 +116,24 @@ function getAllProduct($db){
   $product = $qry->fetchAll();
   return $product;
 }
+
+function insertUser($db)
+{
+  $hashedPassword = password_hash($_POST["password"], PASSWORD_DEFAULT);
+  $datas = array(
+    'email' => $_POST["email"],
+    'password' => $hashedPassword,
+    'first_name' => $_POST["first_name"],
+    'last_name' => $_POST["last_name"],
+    'shipping_adress' => $_POST["shipping_adress"]
+  );
+  debug($datas);
+  $sql = "INSERT INTO user (email, password, first_name, last_name, shipping_adress) VALUE (:email, :password, :first_name, :last_name, :shipping_adress)";
+  $qry = $db->prepare($sql);
+
+  $qry->execute($datas);
+}
+
+function validatePassword($password, $passwordConfirmation){
+  return $password == $passwordConfirmation;
+}
