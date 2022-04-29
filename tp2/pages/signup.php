@@ -62,9 +62,9 @@ define("PAGEALIAS", "signup");
                     <div class="col-3"><label for="last_name" class="formbuilder-text-label">Nom : </label></div>
                     <div class="col-9"><input type="text" class="form-control" name="last_name" access="false" id="last_name" required="required" aria-required="true"></div>
                 </div>
-                <div class="formbuilder-text form-group field-shipping_adress row">
-                    <div class="col-3"><label for="shipping_adress" class="formbuilder-text-label">Adresse de livraison : </label></div>
-                    <div class="col-9"><input type="text" class="form-control" name="shipping_adress" access="false" id="shipping_adress" required="required" aria-required="true"></div>
+                <div class="formbuilder-text form-group field-shipping_address row">
+                    <div class="col-3"><label for="shipping_address" class="formbuilder-text-label">Adresse de livraison : </label></div>
+                    <div class="col-9"><input type="text" class="form-control" name="shipping_address" access="false" id="shipping_address" required="required" aria-required="true"></div>
                 </div>
                 <div class="formbuilder-button form-group field-submit row">
                     <div class="col-10"></div>

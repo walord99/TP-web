@@ -125,10 +125,9 @@ function insertUser($db)
     'password' => $hashedPassword,
     'first_name' => $_POST["first_name"],
     'last_name' => $_POST["last_name"],
-    'shipping_adress' => $_POST["shipping_adress"]
+    'shipping_address' => $_POST["shipping_address"]
   );
-  debug($datas);
-  $sql = "INSERT INTO user (email, password, first_name, last_name, shipping_adress) VALUE (:email, :password, :first_name, :last_name, :shipping_adress)";
+  $sql = "INSERT INTO user (email, password, first_name, last_name, shipping_address) VALUE (:email, :password, :first_name, :last_name, :shipping_address)";
   $qry = $db->prepare($sql);
 
   $qry->execute($datas);
