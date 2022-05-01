@@ -101,7 +101,7 @@ function getProductInfo($db, $sku){
   $qry = $db ->prepare($sql);
   $qry->execute($datas);
 
-  $product = $qry->fetchAll();
+  $product = $qry->fetch();
   return $product;
 }
 
