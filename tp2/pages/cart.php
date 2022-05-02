@@ -20,7 +20,7 @@ $db = connectDB();
         if(!isset($_SESSION['cart']) && empty($_SESSION['cart'])){
             echo 'votre panier est vide';
         } else {
-            echo '<form>';
+            echo '<form action="/action/order.php">';
             for ($i=0; $i < count($_SESSION['cart']); $i++) { 
                 $productInfo = getProductInfo($db,$_SESSION['cart'][$i]['sku']);
                 echo    '<div>
@@ -30,7 +30,8 @@ $db = connectDB();
                             <p>Cout: '.$productInfo['price']*$_SESSION['cart'][$i]['amount'].'</p>
                         </div>';
             }
-            echo '</form>';
+            echo    '<button type="submit"> 
+                    </form>';
         }
         ?>
     </main>

@@ -1,10 +1,5 @@
 <?php
-try {
-    $db = new PDO('mysql:host=localhost;dbname=' . DBNAME . ';charset=utf8', DBUSERNAME, DBPASSWORD);
-} catch (PDOException $e) {
-    echo "Impossible de se connecter!";
-    die();
-}
+    $db = connectDB();
 ?>
 
 <!doctype html>
