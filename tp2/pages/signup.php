@@ -22,7 +22,7 @@ define("PAGEALIAS", "signup");
 
         <?php
         if(isset($_GET["success"]) && $_GET["success"] == "true"){
-           redirect("signin.php?accountcreated=true");
+           redirect("signin?accountcreated=true");
         } 
         elseif(isset($_GET["success"]) && $_GET["success"] == "false"){
             echo "<p> Une erreur est survenue! </p>";

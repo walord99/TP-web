@@ -7,6 +7,8 @@
   require DOCROOT."/includes/debug.inc.php";
   require DOCROOT."/includes/functions.inc.php";
 
+  session_start();
+
   if(isset($_GET["page"])){
       $filename =  DOCROOT."/pages/".$_GET["page"].".php";
 

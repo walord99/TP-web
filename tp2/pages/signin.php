@@ -21,15 +21,18 @@ define("PAGEALIAS", "signin");
         <p class="fs-2 signup-title"><?php echo PAGETITLE; ?></p>
 
         <?php
+        if(isset($_GET["accountcreated"]) && $_GET["accountcreated"] == "true"){
+           echo "<div class='alert alert-success' role='alert'> Compte créé avec succès, veuillez vous connecter</div>";
+        }
+
         if(isset($_GET["success"]) && $_GET["success"] == "true"){
-           redirect("signin.php?accountcreated=true");
-        } 
-        elseif(isset($_GET["success"]) && $_GET["success"] == "false"){
-            echo "<p> Une erreur est survenue! </p>";
+            echo "<div class='alert alert-success' role='alert'> Compte créé avec succès, veuillez vous connecter</div>";
+        } elseif(isset($_GET["success"]) && $_GET["success"] == "false"){
+            echo "<div class='alert alert-danger' role='alert'>Une erreur est survenue</div>";
         }
         ?>
 
-        <form id="rendered-form" method="post" action="/actions/create_event.php">
+        <form id="rendered-form" method="post" action="/actions/connect_user.php">
             <div class="rendered-form">
                 <div class="formbuilder-text form-group field-email row">
                     <div class="col-3"><label for="email" class="formbuilder-text-label">Email : </label></div>
@@ -41,7 +44,7 @@ define("PAGEALIAS", "signin");
                 </div>
                 <div class="formbuilder-button form-group field-submit row">
                     <div class="col-10"></div>
-                    <div class="col-2 signup-submit"><button type="submit" class="btn-outline-primary btn" name="action" access="false" id="action" value="login_user">Se connecter</button></div>
+                    <div class="col-2 signup-submit"><button type="submit" class="btn-outline-primary btn" name="action" access="false" id="action" value="connect_user">Se connecter</button></div>
                 </div>
             </div>
         </form>

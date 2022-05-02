@@ -133,6 +133,33 @@ function insertUser($db)
   $qry->execute($datas);
 }
 
-function validatePassword($password, $passwordConfirmation){
+function getUserInfo($db, $email){
+  $datas = array(
+    'email' => $email
+  );
+
+  $sql = "SELECT * FROM user WHERE email=:email";
+  $qry = $db ->prepare($sql);
+  $qry->execute($datas);
+
+  $product = $qry->fetch();
+  return $product;
+}
+
+function connectUser($email){
+  $_SESSION['user'] = $email;
+}
+
+function validatePasswordConfirmation($password, $passwordConfirmation){
   return $password == $passwordConfirmation;
+}
+
+function emailPasswordValidation($db, $email, $password)
+{
+  $userInfo = getUserInfo($db, $email);
+
+  debug($userInfo);
+  debug(password_verify($password, $userInfo['password']));
+
+  return password_verify($password, $userInfo['password']);
 }

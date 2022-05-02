@@ -19,6 +19,9 @@
         </li>
         <?php
         $isConnected = false;
+        if(isset($_SESSION["user"])){
+          $isConnected = true;
+        }
         if (!$isConnected) :
         ?>
           <li class="nav-item">
