@@ -5,7 +5,15 @@
     <div class="col-2">
       <a href="/"><img src="../img/company_logo.svg" alt="Logo de La baie Ourson"></a>
     </div>
-    <div class="col-5">
+    <div class="col-2">
+    </div>
+    <div class="col-3 email-display">
+      <?php
+      if(isset($_SESSION["user"])){
+        $userInfo = getUserInfo($db, $_SESSION['user']);
+        echo "<p>Utilisateur connecté : ".$_SESSION['user']."</p>";
+      }
+      ?>
     </div>
   </div>
   <div class="row">
