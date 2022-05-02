@@ -18,6 +18,13 @@ if (isset($_POST["amount"]) && $_POST["amount"] > 0) {
             $found = true;
         }
     }
+    //foreach ($_SESSION['cart'] as $item) {
+    //    if($item['sku'] == $_POST['sku']){
+    //        $item['amount'] += $_POST['amount'];
+    //        debug($item);
+    //        $found = true;
+    //    }
+    //}
 
     if(!$found){
         $_SESSION['cart'][count($_SESSION['cart'])] = array('sku' => $_POST['sku'], 'amount' => $_POST['amount']);
@@ -25,5 +32,5 @@ if (isset($_POST["amount"]) && $_POST["amount"] > 0) {
     debug($_SESSION['cart']);
     redirect('cart');
 } else {
-    redirect("../pages/product.php?error=true&sku=".$_POST['sku']);
+    redirect("product?error=true&sku=".$_POST['sku']);
 }

@@ -163,3 +163,22 @@ function emailPasswordValidation($db, $email, $password)
 
   return password_verify($password, $userInfo['password']);
 }
+function parseOrderToArray(){
+  $array = [];
+  for ($i=0; $i < count($_POST)/2; $i++) { 
+    $array = array('sku' => $_POST['sku'.$i], 'amount' => $_POST['amount'.$i]);
+  }
+  return $array;
+}
+function addOrderToDB($db, $order, $userId){
+  $datas = array(
+    'user_id' => $userId
+  );
+  $sql = "INSERT INTO order (user_id) VALUE (:user_id)";
+  $qry = $db->prepare($sql);
+
+  $qry->execute($datas);
+  $id = $db->lastInsertId();
+
+  
+}

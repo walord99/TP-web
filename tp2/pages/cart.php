@@ -4,33 +4,40 @@
 <?php 
 define("PAGETITLE", "Panier");
 define("PAGEALIAS", "cart");
-session_start();
 $db = connectDB();
 ?>
 
 <?php require DOCROOT . '/includes/head.inc.php'; ?>
 
 <body>
-
     <?php require DOCROOT . '/includes/header.inc.php'; ?>
 
     <main class="container">
         <h2>Votre panier</h2>
         <?php debug($_SESSION['cart']);
-        if(!isset($_SESSION['cart']) && empty($_SESSION['cart'])){
+        if(!isset($_SESSION['cart']) || empty($_SESSION['cart'])){
             echo 'votre panier est vide';
-        } else {
-            echo '<form action="/action/order.php">';
+        } else {       
             for ($i=0; $i < count($_SESSION['cart']); $i++) { 
                 $productInfo = getProductInfo($db,$_SESSION['cart'][$i]['sku']);
-                echo    '<div>
-                            <img src="../img/'.$productInfo['sku'].'.png" alt="'.$productInfo['description'].'">
+                echo '  <form action="/actions/remove_from_cart.php" method="post">
+                        <div>
+                            <img class="img-fluid" src="../img/'.$productInfo['sku'].'.png" alt="'.$productInfo['description'].'">
                             <h3?>'.$productInfo['name'].'</h3>
                             <label for="amount">Nombre d\'item: </label><input type="number" id="amount" name="amount" min="1" value="'.$_SESSION['cart'][$i]['amount'].'">
                             <p>Cout: '.$productInfo['price']*$_SESSION['cart'][$i]['amount'].'</p>
-                        </div>';
+                            <input type="hidden" id="sku" name="sku" value="'.$productInfo['sku'].'">
+                            <button type="submit">Suprimer du panier</button>
+                        </div>
+                        </form>';
+                        
             }
-            echo    '<button type="submit"> 
+            echo '<form action="/actions/order.php" method="post">';
+            for ($i=0; $i < count($_SESSION['cart']); $i++){
+                echo '  <input type="hidden" id="sku" name="sku'.$i.'" value="'.$_SESSION['cart'][$i]['sku'].'">
+                        <input type="hidden" id="amount" name="amount'.$i.'" value="'.$_SESSION['cart'][$i]['amount'].'">';
+            }
+            echo '  <button type="submit">Passer la commande</button>
                     </form>';
         }
         ?>
