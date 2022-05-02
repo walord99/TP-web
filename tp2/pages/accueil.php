@@ -21,6 +21,12 @@ define("PAGEALIAS", "accueil");
     <main class="container">
         <div class='row '>
         <?php
+        if(isset($_GET['disconnected']) && $_GET['disconnected'] == "true"){
+            echo "<div class='alert alert-success' role='alert'> Déconnecté avec succès</div>";
+        }
+        if(isset($_GET['connected']) && $_GET['connected'] == "true"){
+            echo "<div class='alert alert-success' role='alert'> Connecté avec succès</div>";
+        }
         foreach ($products as $product) {
             echo "<div class='col-4'>
                     <div class='product-div'>

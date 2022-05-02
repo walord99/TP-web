@@ -17,7 +17,6 @@ define("PAGEALIAS", "signup");
     <?php require DOCROOT . '/includes/header.inc.php'; ?>
 
     <main class="container">
-        <!-- Add your site or application content here -->
         <p class="fs-2 signup-title"><?php echo PAGETITLE; ?></p>
 
         <?php

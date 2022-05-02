@@ -17,7 +17,6 @@ define("PAGEALIAS", "signin");
     <?php require DOCROOT . '/includes/header.inc.php'; ?>
 
     <main class="container">
-        <!-- Add your site or application content here -->
         <p class="fs-2 signup-title"><?php echo PAGETITLE; ?></p>
 
         <?php
@@ -27,6 +26,7 @@ define("PAGEALIAS", "signin");
 
         if(isset($_GET["success"]) && $_GET["success"] == "true"){
             echo "<div class='alert alert-success' role='alert'> Compte créé avec succès, veuillez vous connecter</div>";
+            redirect("accueil?connected=true");
         } elseif(isset($_GET["success"]) && $_GET["success"] == "false"){
             echo "<div class='alert alert-danger' role='alert'>Une erreur est survenue</div>";
         }
