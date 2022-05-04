@@ -24,7 +24,7 @@ $db = connectDB();
                         <div>
                             <img class="img-fluid" src="../img/'.$productInfo['sku'].'.png" alt="'.$productInfo['description'].'">
                             <h3?>'.$productInfo['name'].'</h3>
-                            <label for="amount">Nombre d\'item: </label><input type="number" id="amount" name="amount" min="1" value="'.$_SESSION['cart'][$i]['amount'].'">
+                            <p>Nombre d\'item: '.$_SESSION['cart'][$i]['amount'].'</p>
                             <p>Cout: '.$productInfo['price']*$_SESSION['cart'][$i]['amount'].'</p>
                             <input type="hidden" id="sku" name="sku" value="'.$productInfo['sku'].'">
                             <button type="submit">Suprimer du panier</button>
