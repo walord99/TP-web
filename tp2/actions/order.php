@@ -8,9 +8,10 @@ require DOCROOT . "/includes/functions.inc.php";
 $db = connectDB();
 session_start();
 
-debug($_POST);
+
 unset($_SESSION['cart']);
 
-$parsedOrder = 
-
+$parsedOrder = parseOrderToArray();
+$userId = getUserInfo($db, $_SESSION['user'])['id'];
+addOrderToDB($db, $parsedOrder, $userId);
 ?>

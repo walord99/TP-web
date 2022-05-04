@@ -14,8 +14,11 @@ $db = connectDB();
 
     <main class="container">
         <h2>Votre panier</h2>
-        <?php //debug($_SESSION['cart']);
-        if(!isset($_SESSION['cart']) || empty($_SESSION['cart'])){
+        <?php debug($_SESSION['cart']);
+        if(!isset($_SESSION['cart'])){
+            $_SESSION['cart'] = [];
+        }
+        if(empty($_SESSION['cart'])){
             echo 'votre panier est vide';
         } else {       
             for ($i=0; $i < count($_SESSION['cart']); $i++) { 
