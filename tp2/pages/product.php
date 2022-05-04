@@ -23,6 +23,11 @@ if(isset($_GET["sku"])){
     <?php require DOCROOT . '/includes/header.inc.php';?>
 
     <main class="container">
+    <?php 
+        if(isset($_GET['error']) && $_GET['error'] == "true"){
+            echo "<div class='alert alert-error' role='alert'>Une erreur est survenu</div>";
+        }
+    ?>
     <div  class="row">
         <div class="col-6"> 
             <img class="img-fluid" src="<?php echo '../img/'.$productInfo['sku'].'.png'?>" alt="<?php echo $productInfo['name']?>">

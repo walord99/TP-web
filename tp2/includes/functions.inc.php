@@ -106,7 +106,6 @@ function getProductInfo($db, $sku){
   $product = $qry->fetch();
   return $product;
 }
-
 function getAllProduct($db){
   $datas = array(
   );
@@ -118,9 +117,7 @@ function getAllProduct($db){
   $product = $qry->fetchAll();
   return $product;
 }
-
-function insertUser($db)
-{
+function insertUser($db){
   $hashedPassword = password_hash($_POST["password"], PASSWORD_DEFAULT);
   $datas = array(
     'email' => $_POST["email"],
@@ -134,7 +131,6 @@ function insertUser($db)
 
   $qry->execute($datas);
 }
-
 function getUserInfo($db, $email){
   $datas = array(
     'email' => $email
@@ -147,7 +143,6 @@ function getUserInfo($db, $email){
   $product = $qry->fetch();
   return $product;
 }
-
 function getAllUsers($db){
   $datas = array(
   );
@@ -159,15 +154,12 @@ function getAllUsers($db){
   $product = $qry->fetchAll();
   return $product;
 }
-
 function connectUser($email){
   $_SESSION['user'] = $email;
 }
-
 function validatePasswordConfirmation($password, $passwordConfirmation){
   return $password == $passwordConfirmation;
 }
-
 function doesUserExist($db, $email){
   $userExists = false;
   $users = getAllUsers($db);
@@ -178,9 +170,7 @@ function doesUserExist($db, $email){
   }
   return $userExists;
 }
-
-function emailPasswordValidation($db, $email, $password)
-{
+function emailPasswordValidation($db, $email, $password){
   $userInfo = getUserInfo($db, $email);
 
   debug($userInfo);
@@ -215,7 +205,6 @@ function addOrderToDB($db, $order, $userId){
     $qry->execute($datas);
   }
 }
-
 function addCartPrice($db){
   $totalPrice = 0;
   for ($i=0; $i < count($_SESSION['cart']); $i++){
@@ -224,7 +213,6 @@ function addCartPrice($db){
   }
   return $totalPrice;
 }
-
 function addPostToCart(){
   $found = false;
   for ($i=0; $i < count($_SESSION['cart']); $i++) { 
@@ -238,12 +226,11 @@ function addPostToCart(){
       $_SESSION['cart'][count($_SESSION['cart'])] = array('sku' => $_POST['sku'], 'amount' => $_POST['amount']);
   }
 }
-
 function doesProductExist($db, $sku){
-    $productInfo = getProductInfo($db, $sku);
-    
-    if(empty($productInfo)){
-        return false;
-    }
-    return true;
+  $productInfo = getProductInfo($db, $sku);
+  
+  if(empty($productInfo)){
+      return false;
+  }
+  return true;
 }

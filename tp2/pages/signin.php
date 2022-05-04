@@ -32,7 +32,7 @@ define("PAGEALIAS", "signin");
         }
         ?>
 
-        <form id="rendered-form" method="post" action="/actions/connect_user.php">
+        <form id="rendered-form" method="post" action="/actions/connect_user.php<?php if(isset($_GET['cart']) && $_GET['cart'] == true) echo '?cart=true'?>">
             <div class="rendered-form">
                 <div class="formbuilder-text form-group field-email row">
                     <div class="col-3"><label for="email" class="formbuilder-text-label">Email : </label></div>

@@ -13,8 +13,13 @@ $db = connectDB();
     <?php require DOCROOT . '/includes/header.inc.php'; ?>
 
     <main class="container">
+        <?php 
+            if(isset($_GET['error']) && $_GET['error'] == "true"){
+                echo "<div class='alert alert-error' role='alert'>Une erreur est survenu</div>";
+            }
+        ?>
         <h2>Votre panier</h2>
-        <?php debug($_SESSION['cart']);
+        <?php 
         if(!isset($_SESSION['cart'])){
             $_SESSION['cart'] = [];
         }

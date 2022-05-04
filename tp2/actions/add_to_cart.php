@@ -10,7 +10,7 @@ session_start();
 if(!isset($_SESSION['cart'])){
   $_SESSION['cart'] = [];
 }
-if (isset($_POST["amount"]) && $_POST["amount"] > 0) {
+if (isset($_POST["amount"]) && $_POST["amount"] > 0 && doesProductExist($db, $sku)) {
     addPostToCart();
     redirect('cart');
 } else {
