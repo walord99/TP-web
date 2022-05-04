@@ -166,7 +166,7 @@ function emailPasswordValidation($db, $email, $password)
 function parseOrderToArray(){
   $array = [];
   for ($i=0; $i < count($_POST)/2; $i++) { 
-    $array = array('sku' => $_POST['sku'.$i], 'amount' => $_POST['amount'.$i]);
+    $array[$i] = array('sku' => $_POST['sku'.$i], 'amount' => $_POST['amount'.$i]);
   }
   return $array;
 }
@@ -174,11 +174,34 @@ function addOrderToDB($db, $order, $userId){
   $datas = array(
     'user_id' => $userId
   );
-  $sql = "INSERT INTO order (user_id) VALUE (:user_id)";
+  $sql = "INSERT INTO `order` (user_id) VALUE (:user_id)";
   $qry = $db->prepare($sql);
 
   $qry->execute($datas);
   $id = $db->lastInsertId();
-
   
+  for ($i=0; $i < count($order); $i++) { 
+    $datas = array(
+      'order_id' => $id,
+      'product_sku' => $order[$i]['sku'],
+      'quantity' => $order[$i]['amount']
+    );
+    $sql = "INSERT INTO order_item (order_id, product_sku, quantity) VALUE (:order_id, :product_sku, :quantity)";
+    $qry = $db->prepare($sql);
+    $qry->execute($datas);
+  }
+}
+
+function addPostToCart(){
+  $found = false;
+  for ($i=0; $i < count($_SESSION['cart']); $i++) { 
+      if($_SESSION['cart'][$i]['sku'] == $_POST['sku']){
+          $_SESSION['cart'][$i]['amount'] += $_POST['amount'];
+          $found = true;
+      }
+  }
+
+  if(!$found){
+      $_SESSION['cart'][count($_SESSION['cart'])] = array('sku' => $_POST['sku'], 'amount' => $_POST['amount']);
+  }
 }
