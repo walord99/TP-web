@@ -215,3 +215,12 @@ function addPostToCart(){
       $_SESSION['cart'][count($_SESSION['cart'])] = array('sku' => $_POST['sku'], 'amount' => $_POST['amount']);
   }
 }
+
+function doesProductExist($db, $sku){
+    $productInfo = getProductInfo($db, $sku);
+    
+    if(empty($productInfo)){
+        return false;
+    }
+    return true;
+}

@@ -5,6 +5,10 @@ require DOCROOT . "/includes/config.inc.php";
 require DOCROOT . "/includes/debug.inc.php";
 require DOCROOT . "/includes/functions.inc.php";
 
+if(!isset($_SESSION['user'])){
+    redirect('signin');
+}
+
 $db = connectDB();
 session_start();
 
