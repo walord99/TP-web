@@ -7,9 +7,12 @@
 
   $db = connectDB();
 
-  if(isset($_POST["action"]) && $_POST["action"] == "create_user" && validatePasswordConfirmation($_POST["password"], $_POST["passwordconfirm"])){
-      insertUser($db);
-      redirect("signup?success=true");
+  if(isset($_POST["action"]) && $_POST["action"] == "create_user"){
+      if(validatePasswordConfirmation($_POST["password"], $_POST["passwordconfirm"]) &&  !doesUserExist($db, $_POST["email"])){
+        insertUser($db);
+        redirect("signup?success=true");
+      }
+      redirect("signup?success=false");
   }
   else{
       redirect("signup?success=false");
