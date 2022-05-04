@@ -148,12 +148,35 @@ function getUserInfo($db, $email){
   return $product;
 }
 
+function getAllUsers($db){
+  $datas = array(
+  );
+
+  $sql = "SELECT * FROM user";
+  $qry = $db ->prepare($sql);
+  $qry->execute($datas);
+
+  $product = $qry->fetchAll();
+  return $product;
+}
+
 function connectUser($email){
   $_SESSION['user'] = $email;
 }
 
 function validatePasswordConfirmation($password, $passwordConfirmation){
   return $password == $passwordConfirmation;
+}
+
+function doesUserExist($db, $email){
+  $userExists = false;
+  $users = getAllUsers($db);
+  foreach($users as $user){
+    if($user["email"]  == $email){
+      $userExists = true;
+    }
+  }
+  return $userExists;
 }
 
 function emailPasswordValidation($db, $email, $password)
