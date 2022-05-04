@@ -14,7 +14,6 @@ if(isset($_GET["sku"])){
 } else {
     redirect('404.html');
 }
-
 ?>
 
 <?php require DOCROOT . '/includes/head.inc.php'; ?>
@@ -26,15 +25,20 @@ if(isset($_GET["sku"])){
     <main class="container">
     <div  class="row">
         <div class="col-6"> 
-            <img src="<?php echo '../img/'.$productInfo['sku'].'.png'?>" alt="<?php echo $productInfo['name']?>">
+            <img class="img-fluid" src="<?php echo '../img/'.$productInfo['sku'].'.png'?>" alt="<?php echo $productInfo['name']?>">
         </div>
         <div class="col-6">
-            <h1><?php echo $productInfo['name']?></h1>
-            <p><?php echo $productInfo['description']?></p>
-            <p><?php echo $productInfo['price'].'$'?></p>
+            <h1 class="pt-4 pb-4"><?php echo $productInfo['name']?></h1>
+            <p class="mb-0"><?php echo $productInfo['description']?></p>
+            <p class="mb-1 fs-2"><?php echo $productInfo['price'].'$'?></p>
             <form action="/actions/add_to_cart.php" method="post">
-                <input type="number" name="amount" id="amount" min="0" value="1">
-                <button type="submit">Ajouter au panier</button>
+                <div class="container ps-0">
+                    <div class="row">
+                        <div class="col-3"><input class="form-control" type="number" name="amount" id="amount" min="0" value="1"></div>
+                        <div class="col-2"></div>
+                        <div class="col-7"><button class="btn btn-outline-primary fw-bolder" type="submit">Ajouter au panier</button></div>
+                    </div>
+                </div>
                 <input type="hidden" name="sku" value="<?php echo $productInfo['sku']?>">
             </form>
         </div>

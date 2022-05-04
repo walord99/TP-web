@@ -2,6 +2,8 @@
 
 declare(strict_types=1); //obligatoire
 
+use function foo\func;
+
 function redirect(string $url = ""){
   if($url == ""){
       header("Location: ". "/");
@@ -181,4 +183,13 @@ function addOrderToDB($db, $order, $userId){
   $id = $db->lastInsertId();
 
   
+}
+
+function addCartPrice($db){
+  $totalPrice = 0;
+  for ($i=0; $i < count($_SESSION['cart']); $i++){
+    $productInfo = getProductInfo($db,$_SESSION['cart'][$i]['sku']);
+    $totalPrice += $productInfo['price']*$_SESSION['cart'][$i]['amount'];
+  }
+  return $totalPrice;
 }
