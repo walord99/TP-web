@@ -2,7 +2,7 @@
     declare(strict_types=1);
 
     define("SITEURL", $_SERVER["HTTP_HOST"]);
-    define("SITESTATE", "dev"); //dev ou prod
+    define("SITESTATE", "prod"); //dev ou prod
 
     define("SITETITLE", "La baie Ourson");
     define("SITEDESC", "La baie Ourson - Site de commande de vêtements");
