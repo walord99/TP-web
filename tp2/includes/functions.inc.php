@@ -142,6 +142,7 @@ function getUserInfo($db, $email){
   $qry->execute($datas);
 
   $product = $qry->fetch();
+  debug($product);
   return $product;
 }
 function getAllUsers($db){
@@ -173,6 +174,7 @@ function doesUserExist($db, $email){
 }
 function emailPasswordValidation($db, $email, $password){
   $userInfo = getUserInfo($db, $email);
+  debug($userInfo);
 
   return password_verify($password, $userInfo['password']);
 }
@@ -229,9 +231,7 @@ function doesProductExist($sku){
   $db = connectDB();
   $productInfo = getProductInfo($db, $sku);
   
-  if(empty($productInfo)){
-      return false;
-  }
+  if($productInfo = false) return false;
   return true;
 }
 function removeFromCart($cart, $sku){
