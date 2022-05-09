@@ -61,7 +61,7 @@ $db = connectDB();
                             </div>
                             <div class="col-3 d-flex align-items-end flex-column">
                                 </br>
-                                <p class="fs-3 fw-bolder">'.addCartPrice($db).'$</p>
+                                <p class="fs-3 fw-bolder">'.addCartPrice($db, $_SESSION['cart']).'$</p>
                                 <button class="btn btn-outline-primary fw-bolder" type="submit">Passer la commande</button>
                             </div>
                         </div>
