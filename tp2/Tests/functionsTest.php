@@ -6,50 +6,30 @@ use PHPUnit\Framework\TestCase;
 
 class functionsTest extends TestCase
 {
+    public function canParseOrderToArray(){
+        $expectedResult = array(array('sku' => 20, 'amount' => 2), array('sku' => 30, 'amount' => 1));
+        $post = array('sku0' => 20, 'amount0' => 2, 'sku1' => 30, 'amount1' => 1);
 
-    public function testCalculMoyenne(){
-        // Arrange
-        $numbers = [3, 7, 6, 1, 5];
-        // Act
-        $result = moyenne($numbers);
-        // Assert
-        $this->assertEquals(4.4, $result, "Erreur dans le calcul d'une moyenne!");
+        $parsedPost = parseOrderToArray($post);
+
+        $this->assertEquals($expectedResult, $parsedPost, 'Error while parsing to array');
     }
 
-    public function testCalculMediane(){        
-        // Arrange
-        $numbers = [3, 7, 6, 1, 5];
-        // Act
-        $result = mediane($numbers);
-        // Assert
-        $this->assertEquals(5, $result, "Erreur dans le calcul d'une mediane!");
+    public function canRemoveFromCart(){
+        $expectedResult = array(array('sku' => 30, 'amount' => 1));
+        $cart = array(array('sku' => 20, 'amount' => 2), array('sku' => 30, 'amount' => 1));
+
+        $cartv2 = removeFromCart($cart, '20');
+
+        $this->assertEquals($expectedResult, $cartv2 ,'Error while removing from cart');
     }
 
-    public function testObtenirMessage(){        
-        // Arrange
-        $age = 17;
-        // Act
-        $result = obtenirMessage($age);
-        // Assert
-        $this->assertEquals("un ado", $result, "Erreur dans le message de l'age!");
-    }
+    public function canAddItemToCart(){
+        $expectedResult = array(array('sku' => 20, 'amount' => 2), array('sku' => 30, 'amount' => 1));
+        $cart = array(array('sku' => 30, 'amount' => 1));
 
-    public function testObtenirResultatDe(){        
-        // Arrange
-        $valeurDe = 6;
-        // Act
-        $result = obtenirResultatDe($valeurDe);
-        // Assert
-        $this->assertGreaterThan(0, $result, "Erreur dans le lancer de dé, le chiffre est trop petit!");
-        $this->assertLessThanOrEqual($valeurDe, $result, "Erreur dans le lancer de dé, le chiffre est trop grand!");
-    }
+        $cartv2 = addItemForCart(array('sku' => 20, 'amount' => 2), $cart);
 
-    public function testTrouverPlusGrand(){        
-        // Arrange
-        $numbers = [3, 7, 6, 1, 5];
-        // Act
-        $result = trouverPlusGrand($numbers);
-        // Assert
-        $this->assertEquals(7, $result, "Erreur dans la recherche du plus grand nombre!");
+        $this->assertEquals($expectedResult, $cartv2, 'Error while adding to cart');
     }
 }

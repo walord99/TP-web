@@ -21,9 +21,6 @@ define("PAGEALIAS", "accueil");
     <main class="container">
         <div class='row '>
         <?php
-        if(isset($_GET['order']) && $_GET['order'] == "true"){
-            echo "<div class='alert alert-success' role='alert'>Commande affectuer</div>";
-        }
         if(isset($_GET['disconnected']) && $_GET['disconnected'] == "true"){
             echo "<div class='alert alert-success' role='alert'> Déconnecté avec succès</div>";
         }

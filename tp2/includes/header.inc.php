@@ -10,7 +10,8 @@
     <div class="col-3 email-display">
       <?php
       if(isset($_SESSION["user"])){
-        $userInfo = getUserInfo($db, $_SESSION['user']);
+        
+        $userInfo = getUserInfo(connectDB(), $_SESSION['user']);
         echo "<p>Utilisateur connecté : ".$_SESSION['user']."</p>";
       }
       ?>

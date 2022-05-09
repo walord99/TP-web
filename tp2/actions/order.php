@@ -14,19 +14,19 @@ if(!isset($_SESSION['user'])){
 
 unset($_SESSION['cart']);
 
-$parsedOrder = parseOrderToArray();
+$parsedOrder = parseOrderToArray($_POST);
 $userId = getUserInfo($db, $_SESSION['user'])['id'];
 $error = false;
 debug($parsedOrder);
 debug($userId);
 for ($i=0; $i < count($parsedOrder); $i++) { 
-    if(!doesProductExist($db, $parsedOrder[$i]['sku'])){
+    if(!doesProductExist($parsedOrder[$i]['sku'])){
         $error = true;
     }
 }
 if(!$error){
     addOrderToDB($db, $parsedOrder, $userId);
-    redirect('accueil?order=true');
+    redirect('confirm');
 }
 redirect('cart?error=true');
 ?>

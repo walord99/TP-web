@@ -10,12 +10,7 @@ session_start();
 
 debug($_POST);
 if(isset($_SESSION['cart']) && doesProductExist($db, $_POST['sku'])){
-    for ($i=0; $i < count($_SESSION['cart']); $i++) { 
-        if($_SESSION['cart'][$i]['sku'] == $_POST['sku']){
-            unset($_SESSION['cart'][$i]);
-            $_SESSION['cart'] = array_values($_SESSION['cart']);
-        }
-    }
+    $_SESSION['cart'] = removeFromCart($_SESSION['cart'], $_POST['sku']);
     redirect('cart');
 }
 redirect('cart?error=true')

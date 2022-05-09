@@ -95,12 +95,13 @@ function deleteDB($db)
 }
 
 function getProductInfo($db, $sku){
+  debug($db);
   $datas = array(
     'sku' => $sku
   );
 
   $sql = "SELECT * FROM product WHERE sku=:sku";
-  $qry = $db ->prepare($sql);
+  $qry = $db->prepare($sql);
   $qry->execute($datas);
 
   $product = $qry->fetch();
@@ -173,15 +174,12 @@ function doesUserExist($db, $email){
 function emailPasswordValidation($db, $email, $password){
   $userInfo = getUserInfo($db, $email);
 
-  debug($userInfo);
-  debug(password_verify($password, $userInfo['password']));
-
   return password_verify($password, $userInfo['password']);
 }
-function parseOrderToArray(){
+function parseOrderToArray($post){
   $array = [];
-  for ($i=0; $i < count($_POST)/2; $i++) { 
-    $array[$i] = array('sku' => $_POST['sku'.$i], 'amount' => $_POST['amount'.$i]);
+  for ($i=0; $i < count($post)/2; $i++) { 
+    $array[$i] = array('sku' => $post['sku'.$i], 'amount' => $post['amount'.$i]);
   }
   return $array;
 }
@@ -205,32 +203,43 @@ function addOrderToDB($db, $order, $userId){
     $qry->execute($datas);
   }
 }
-function addCartPrice($db){
+function addCartPrice($db, $cart){
   $totalPrice = 0;
-  for ($i=0; $i < count($_SESSION['cart']); $i++){
-    $productInfo = getProductInfo($db,$_SESSION['cart'][$i]['sku']);
-    $totalPrice += $productInfo['price']*$_SESSION['cart'][$i]['amount'];
+  for ($i=0; $i < count($cart); $i++){
+    $productInfo = getProductInfo($db,$cart[$i]['sku']);
+    $totalPrice += $productInfo['price']*$cart[$i]['amount'];
   }
   return $totalPrice;
 }
-function addPostToCart(){
+function addItemForCart($post, $cart){
   $found = false;
-  for ($i=0; $i < count($_SESSION['cart']); $i++) { 
-      if($_SESSION['cart'][$i]['sku'] == $_POST['sku']){
-          $_SESSION['cart'][$i]['amount'] += $_POST['amount'];
-          $found = true;
-      }
+  for ($i=0; $i < count($cart); $i++) { 
+    if($cart[$i]['sku'] == $post['sku']){
+      $cart[$i]['amount'] += $post['amount'];
+      $found = true;
+    }
   }
 
   if(!$found){
-      $_SESSION['cart'][count($_SESSION['cart'])] = array('sku' => $_POST['sku'], 'amount' => $_POST['amount']);
+    $cart[count($cart)] = array('sku' => $post['sku'], 'amount' => $post['amount']);
   }
+  return $cart;
 }
-function doesProductExist($db, $sku){
+function doesProductExist($sku){
+  $db = connectDB();
   $productInfo = getProductInfo($db, $sku);
   
   if(empty($productInfo)){
       return false;
   }
   return true;
+}
+function removeFromCart($cart, $sku){
+  for ($i=0; $i < count($_SESSION['cart']); $i++) { 
+    if($_SESSION['cart'][$i]['sku'] == $_POST['sku']){
+        unset($_SESSION['cart'][$i]);
+        $_SESSION['cart'] = array_values($_SESSION['cart']);
+    }
+  }
+  return $cart;
 }
