@@ -130,9 +130,7 @@ function doesProductExist($sku)
   $db = connectDB();
   $productInfo = getProductInfo($db, $sku);
 
-  if (empty($productInfo)) {
-    return false;
-  }
+  if($productInfo = false) return false;
   return true;
 }
 
